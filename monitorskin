@@ -1,0 +1,192 @@
+[Rainmeter]
+UpdateRate=60
+AccurateText=1
+DynamicWindowSize=1
+ 
+[Metadata]
+Name=Pihole Stats
+Author= u\Bakkoda & u\alexnader
+Information=Rainmetre skin to show local Pihole stats on desktop
+License=Creative Commons Attribution-Non-Commercial-Share Alike 3.0
+Version= Feb 14, 2022.
+PiHole 6.0 Compatible (Shout-out to u\impuce, u\GRRemlin & u\Clavis_Apocalypticae for their swift fixes).
+ 
+[Variables]
+Font=Century Gothic
+FontColor=255, 255, 255, 255
+FontSize=12
+ 
+[PiholeStats]
+Measure=Plugin
+Plugin=WebParser
+URL=http://192.168.2.96/admin/api.php?summary&auth=<TOKEN>
+RegExp=(?siU)"domains_being_blocked":"(.*)","dns_queries_today":"(.*)","ads_blocked_today":"(.*)","ads_percentage_today":"(.*)","unique_domains":"(.*)"
+UpdateRate=60
+ 
+; DNS Queries ======================================================================================
+ 
+[DNSQueries]
+Measure=Plugin
+Plugin=WebParser
+URL=[PiholeStats]
+StringIndex=2
+ 
+[DNSQueriesLabel]
+Meter=String
+X=5
+Y=5
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=41, 163, 41
+FontFace=#Font#
+Padding=5,5,5,5
+StringEffect=Shadow
+AntiAlias=1
+Text=Total DNS Queries:
+ 
+[DNSQueriesCount]
+Meter=String
+MeasureName=DNSQueries
+X=295
+Y=0r
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=41, 163, 41
+FontFace=#Font#
+SolidColor=0,0,0,1
+Padding=5,5,5,5
+StringAlign=Right
+StringEffect=Shadow
+AntiAlias=1
+ 
+; Ads Blocked Today ======================================================================================
+ 
+[AdsBlocked]
+Measure=Plugin
+Plugin=WebParser
+URL=[PiholeStats]
+StringIndex=3
+ 
+[AdsBlockedLabel]
+Meter=String
+X=5
+Y=3R
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=0, 153, 204
+FontFace=#Font#
+Padding=5,5,5,5
+StringEffect=Shadow
+AntiAlias=1
+Text=Queries Blocked:
+ 
+[AdsBlockedCount]
+Meter=String
+MeasureName=AdsBlocked
+X=295
+Y=0r
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=0, 153, 204
+FontFace=#Font#
+SolidColor=0,0,0,1
+Padding=5,5,5,5
+StringAlign=Right
+StringEffect=Shadow
+AntiAlias=1
+ 
+; Percentage Ads ======================================================================================
+ 
+[AdsPercentage]
+Measure=Plugin
+Plugin=WebParser
+URL=[PiholeStats]
+StringIndex=4
+ 
+[AdsPercentageLabel]
+Meter=String
+X=5
+Y=3R
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=255, 153, 0
+FontFace=#Font#
+Padding=5,5,5,5
+StringEffect=Shadow
+AntiAlias=1
+Text=Percent Blocked:
+ 
+[AdsPercentageCount]
+Meter=String
+MeasureName=AdsPercentage
+X=295
+Y=0r
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=255, 153, 0
+FontFace=#Font#
+Padding=5,5,5,5
+StringAlign=Right
+StringEffect=Shadow
+AntiAlias=1
+ 
+[AdsPercentageSign]
+Meter=String
+X=295
+Y=0r
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=255, 153, 0
+FontFace=#Font#
+SolidColor=0,0,0,1
+Padding=5,5,5,5
+StringAlign=Right
+StringEffect=Shadow
+AntiAlias=1
+Text=%
+ 
+; Domains Blocked ======================================================================================
+ 
+[DomainsBlocked]
+Measure=Plugin
+Plugin=WebParser
+URL=[PiholeStats]
+StringIndex=1
+ 
+[DomainsBlockedLabel]
+Meter=String
+X=5
+Y=3R
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=255, 77, 77
+FontFace=#Font#
+Padding=5,5,5,5
+StringEffect=Shadow
+AntiAlias=1
+Text=Domains on Blocklist:
+ 
+[DomainBlockedCount]
+Meter=String
+MeasureName=DomainsBlocked
+X=295
+Y=0r
+W=280
+H=20
+FontSize=#FontSize#
+FontColor=255, 77, 77
+FontFace=#Font#
+SolidColor=0,0,0,1
+SolidColor=0,0,0,1
+Padding=5,5,5,5
+StringAlign=Right
+StringEffect=Shadow
+AntiAlias=1
